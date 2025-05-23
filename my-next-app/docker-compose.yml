@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  nextjs-app:
+    build: .
+    image: emrealgan/nextjs-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      GPT4o_API_KEY: ${GPT4o_API_KEY}
+      MONGO_URL: ${MONGO_URL}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      MAILJET_API_KEY: ${MAILJET_API_KEY}
+      MAILJET_API_SECRET: ${MAILJET_API_SECRET}
