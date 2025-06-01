@@ -46,7 +46,7 @@ export async function POST(req) {
             content: `Translate this text from ${sourceLanguageName} to ${targetLanguageName}: ${text}`,
           },
         ],
-        model: "gpt-4o",
+        model: "gpt-3.5-turbo",
       });
       resp = completion.choices[0];
     } catch (error) {
