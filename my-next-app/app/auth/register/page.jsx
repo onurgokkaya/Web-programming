@@ -72,7 +72,7 @@ export default function Register() {
         const response = await fetch("/api/register", {
           method: "POST",
           headers: {
-            "x-api-key": process.env.ADMIN_KEY,
+            "x-api-key": process.env.NEXT_PUBLIC_ADMIN_KEY,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -83,7 +83,7 @@ export default function Register() {
 
         if (response.ok) {
           console.log("User registered successfully");
-          router.push("/auth/register");
+          router.push("/");
         } else {
           setError("Failed to register user");
         }

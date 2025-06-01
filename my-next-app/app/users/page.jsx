@@ -19,7 +19,7 @@ export default function Users() {
         const response = await fetch("/api/users", {
           method: "GET",
           headers: {
-            "x-api-key": process.env.ADMIN_KEY,
+            "x-api-key": process.env.NEXT_PUBLIC_ADMIN_KEY,
             "Content-Type": "application/json",
           },
         });
@@ -42,7 +42,7 @@ export default function Users() {
       const response = await fetch(`/api/changeActive`, {
         method: "PATCH",
         headers: {
-          "x-api-key": process.env.ADMIN_KEY,
+          "x-api-key": process.env.NEXT_PUBLIC_ADMIN_KEY,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -63,7 +63,7 @@ export default function Users() {
       const response = await fetch(`/api/addAdmin`, {
         method: "PATCH",
         headers: {
-          "x-api-key": process.env.ADMIN_KEY,
+          "x-api-key": process.env.NEXT_PUBLIC_ADMIN_KEY,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({

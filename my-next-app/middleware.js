@@ -4,14 +4,15 @@ import { getToken } from "next-auth/jwt";
 export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  const isAdminPath = ["/auth/register", "/users", "/history/:path*"].includes(
-    req.nextUrl.pathname
-  );
+  const isAdminPath =
+    ["/auth/register", "/users"].some((path) =>
+      req.nextUrl.pathname.startsWith(path)
+    ) || req.nextUrl.pathname.startsWith("/history");
 
-  const isUserPath = ["/"].includes(req.nextUrl.pathname);
+  const isUserPath = req.nextUrl.pathname === "/";
 
   if (!token) {
-    if (isUserPath) {
+    if (isUserPath && req.nextUrl.pathname !== "/auth/login") {
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
   } else {
@@ -26,5 +27,11 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/auth/login", "/auth/register", "/users", "/history/:path*", "/"],
+  matcher: [
+    "/auth/login",
+    "/auth/register",
+    "/users",
+    "/history/:path*",
+    "/"  // gerekirse burayı kaldır
+  ],
 };
